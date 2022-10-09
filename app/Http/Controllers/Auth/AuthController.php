@@ -59,7 +59,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'birthday' => $request->birthday,
             'password' => Hash::make($request->password),
-            'username' => Hash::make($request->username),
+            'username' => $request->username,
         ]);
 
         $user->sendEmailVerificationNotification();

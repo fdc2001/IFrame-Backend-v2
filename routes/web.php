@@ -18,4 +18,4 @@ Route::get('/', function () {
 });
 Route::get('/', function () {
     return view('welcome');
-})->name('login');
+})->name('login2');

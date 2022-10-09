@@ -7,20 +7,20 @@ use Illuminate\Http\Request;
 class VerificationController extends Controller {
     public function __construct()
     {
-        $this->middleware('auth:api');
+        //$this->middleware('auth:api', ['except' => ['verify']]);
     }
     public function verify($user_id, Request $request) {
         if (!$request->hasValidSignature()) {
             return response()->json(["msg" => "Invalid/Expired url provided."], 401);
         }
 
-        $user = User::findOrFail($user_id);
+        $user = User::find($user_id);
 
         if (!$user->hasVerifiedEmail()) {
             $user->markEmailAsVerified();
         }
 
-        return redirect()->to('/');//criar view toda animada para informar que a conta está ativada
+        return response()->json('conta activada');//criar view toda animada para informar que a conta está ativada
     }
 
     public function resend() {
